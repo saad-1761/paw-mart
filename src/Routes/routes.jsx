@@ -34,15 +34,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/my-orders",
-        element: <MyOrder></MyOrder>,
+        element: (
+          <PrivateRoute>
+            <MyOrder></MyOrder>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/my-listings",
-        element: <MyListing></MyListing>,
+        element: (
+          <PrivateRoute>
+            <MyListing></MyListing>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/add-listing",
-        element: <AddListing></AddListing>,
+        element: (
+          <PrivateRoute>
+            <AddListing></AddListing>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/pet&supplies",
@@ -59,11 +71,19 @@ export const router = createBrowserRouter([
 
       {
         path: "/profile",
-        element: <Profile></Profile>,
+        element: (
+          <PrivateRoute>
+            <Profile></Profile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/update-profile",
-        element: <UpdateProfile></UpdateProfile>,
+        element: (
+          <PrivateRoute>
+            <UpdateProfile></UpdateProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/category/:category",
@@ -76,7 +96,7 @@ export const router = createBrowserRouter([
     element: <ErrorPage></ErrorPage>,
   },
   {
-    path: "/pet&supplies/*",
+    path: "/pet&supplies/:*",
     element: <ErrorPage></ErrorPage>,
   },
 ]);

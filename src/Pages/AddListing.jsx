@@ -1,7 +1,207 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 const AddListing = () => {
-  return <div>Add listing Page</div>;
+  const { user } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    name: "",
+    category: "",
+    price: "",
+    description: "",
+    photoUrl: "",
+    location: "",
+    email: "",
+    createdAt: "",
+  });
+
+  // Auto-fill date and email on mount
+  useEffect(() => {
+    const today = new Date().toISOString().split("T")[0];
+    setFormData((prev) => ({
+      ...prev,
+      email: user?.email || "",
+      createdAt: today,
+    }));
+  }, [user]);
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // If user changes category to "Pets", auto-fill price = "Free"
+    if (name === "category") {
+      setFormData((prev) => ({
+        ...prev,
+        category: value,
+        price: value === "Pets" ? "Free" : "",
+      }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("http://localhost:3000/add-listing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("✅ Listing added successfully!");
+        const today = new Date().toISOString().split("T")[0];
+        setFormData({
+          name: "",
+          category: "",
+          price: "",
+          description: "",
+          photoUrl: "",
+          location: "",
+          email: user?.email || "",
+          createdAt: today,
+        });
+      } else {
+        alert("❌ Failed to add listing");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("⚠️ Error occurred while adding listing");
+    }
+  };
+
+  return (
+    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
+      <h2 className="text-2xl font-semibold text-center mb-6">
+        Add New Listing
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Product Name */}
+        <div>
+          <label className="block font-medium mb-1">Product Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full border px-3 py-2 rounded"
+          />
+        </div>
+
+        {/* Category */}
+        <div>
+          <label className="block font-medium mb-1">Category</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            required
+            className="w-full border px-3 py-2 rounded"
+          >
+            <option value="">Select Category</option>
+            <option value="Pets">Pets</option>
+            <option value="Pet Food">Pet Food</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Pet Care">Pet Care</option>
+          </select>
+        </div>
+
+        {/* Price Field */}
+        <div>
+          <label className="block font-medium mb-1">Price</label>
+          <input
+            type="text"
+            name="price"
+            value={formData.price}
+            onChange={handleChange}
+            required
+            disabled={formData.category === "Pets"}
+            className={`w-full border px-3 py-2 rounded ${
+              formData.category === "Pets"
+                ? "bg-gray-100 cursor-not-allowed"
+                : ""
+            }`}
+            placeholder={
+              formData.category === "Pets" ? "Free" : "Enter price (e.g., 500)"
+            }
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block font-medium mb-1">Description</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+            className="w-full border px-3 py-2 rounded"
+          />
+        </div>
+
+        {/* Photo URL */}
+        <div>
+          <label className="block font-medium mb-1">Photo URL</label>
+          <input
+            type="url"
+            name="photoUrl"
+            value={formData.photoUrl}
+            onChange={handleChange}
+            required
+            className="w-full border px-3 py-2 rounded"
+          />
+        </div>
+
+        {/* Location */}
+        <div>
+          <label className="block font-medium mb-1">Location</label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            required
+            className="w-full border px-3 py-2 rounded"
+          />
+        </div>
+
+        {/* Email (readonly) */}
+        <div>
+          <label className="block font-medium mb-1">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            readOnly
+            className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed"
+          />
+        </div>
+
+        {/* Date (readonly) */}
+        <div>
+          <label className="block font-medium mb-1">Created At</label>
+          <input
+            type="text"
+            name="createdAt"
+            value={formData.createdAt}
+            readOnly
+            className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-2 rounded hover:opacity-90"
+        >
+          Post Listing
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default AddListing;
