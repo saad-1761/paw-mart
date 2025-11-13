@@ -4,6 +4,7 @@ import ListingCard from "../Components/ListingCard";
 import useListing from "../Hooks/useListing";
 import HomeCategories from "./HomeCategories";
 import About from "../Components/About";
+import HowItWorks from "../Components/HowItWorks";
 
 const Home = () => {
   const data = useLoaderData();
@@ -31,6 +32,7 @@ const Home = () => {
       </div>
       <HomeCategories></HomeCategories>
       <About></About>
+      <HowItWorks></HowItWorks>
     </>
   );
 };
