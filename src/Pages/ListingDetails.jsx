@@ -47,6 +47,10 @@ const ListingDetails = () => {
     navigate(`/order/${product._id}`, { state: product });
   };
 
+  const handleGoBack = () => {
+    navigate("/pet-supplies");
+  };
+
   const isSeller = user?.email === product.email;
 
   return (
@@ -58,7 +62,7 @@ const ListingDetails = () => {
             <img
               src={product.image}
               alt={product.name}
-              className="rounded-xl shadow-md w-full max-w-md object-cover aspect-[4/3]"
+              className="rounded-xl shadow-md w-full max-w-md object-cover aspect-4/3"
             />
           </div>
 
@@ -77,23 +81,41 @@ const ListingDetails = () => {
                 <span className="font-semibold">Location:</span>{" "}
                 {product.location}
               </p>
+              <p>
+                <span className="font-semibold">Owner Email:</span>{" "}
+                {product.email}
+              </p>
+              <p>
+                <span className="font-semibold">Description:</span>{" "}
+                {product.description || "No description provided."}
+              </p>
             </div>
 
             <p className="text-xl sm:text-2xl font-bold text-green-600 dark:text-green-400">
               {product.Price === 0 ? "Free" : `৳ ${product.Price}`}
             </p>
 
-            <button
-              disabled={isSeller}
-              onClick={handleOrder}
-              className={`w-full sm:w-auto px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 ${
-                isSeller
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-indigo-600 hover:bg-indigo-700 dark:bg-yellow-500 dark:hover:bg-yellow-600"
-              }`}
-            >
-              {isSeller ? "You can't order your own item" : "Order Now"}
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-start mt-4">
+              <button
+                disabled={isSeller}
+                onClick={handleOrder}
+                className={`px-6 py-3 rounded-lg text-white font-semibold transition-all duration-300 ${
+                  isSeller
+                    ? "bg-gray-400 cursor-not-allowed"
+                    : "bg-indigo-600 hover:bg-indigo-700 dark:bg-yellow-500 dark:hover:bg-yellow-600"
+                }`}
+              >
+                {isSeller ? "You can't order your own item" : "Order Now"}
+              </button>
+
+              {/* ✅ Go Back Button */}
+              <button
+                onClick={handleGoBack}
+                className="px-6 py-3 rounded-lg border border-gray-400 text-gray-700 hover:bg-gray-200 dark:text-gray-300 dark:border-gray-500 dark:hover:bg-gray-700 transition-all duration-300"
+              >
+                ← Go Back
+              </button>
+            </div>
           </div>
         </div>
       </div>

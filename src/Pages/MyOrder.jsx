@@ -112,7 +112,7 @@ const MyOrder = () => {
           >
             {/* Left: serial & product */}
             <div className="flex items-center w-full lg:w-1/5">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
+              <div className="shrink-0 w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold">
                 {idx + 1}
               </div>
               <div className="ml-3">

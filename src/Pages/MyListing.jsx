@@ -111,7 +111,7 @@ const MyListings = () => {
             </div>
 
             {/* Right: Buttons */}
-            <div className="flex gap-3 mt-3 sm:mt-0 sm:w-1/4 justify-end">
+            <div className="flex gap-3 mt-3 sm:mt-0 sm:w-1/4 justify-center">
               <button
                 onClick={() => handleUpdate(item._id)}
                 className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
