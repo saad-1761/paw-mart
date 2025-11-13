@@ -5,6 +5,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase.config";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 // import useGames from "../Hooks/useGames";
 const Navbar = () => {
   const { user, setUser } = useContext(AuthContext);
@@ -18,7 +19,8 @@ const Navbar = () => {
     setLoggingOut(true);
     signOut(auth)
       .then(() => {
-        toast.success("Signed out!");
+        Swal.fire("Signed Out! Successfully.");
+        //toast.success("Signed out!");
         setUser(null);
         navigate("/login");
       })

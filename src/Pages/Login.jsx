@@ -6,6 +6,7 @@ import { IoEyeOff } from "react-icons/io5";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const Login = () => {
   //   const [email, setEmail] = useState("");
@@ -28,12 +29,13 @@ const Login = () => {
       .then((res) => {
         setUser(null);
         if (!res.user.emailVerified) {
-          toast.error("Email not verified");
+          Swal.fire("Email not verified");
+          //toast.error("Email not verified");
           return;
         }
         setUser(res.user);
-
-        toast.success("Login Successful");
+        Swal.fire("Login Successful");
+        //toast.success("Login Successful");
         navigate(redirectPath, { replace: true });
       })
       .catch((e) => {
@@ -47,7 +49,8 @@ const Login = () => {
       .then((res) => {
         setUser(res.user);
 
-        toast.success("Login Successful");
+        Swal.fire("Login Successful");
+        //toast.success("Login Successful");
         navigate(redirectPath, { replace: true });
       })
       .catch((e) => {

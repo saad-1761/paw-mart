@@ -4,7 +4,7 @@ const ListingCard = ({ product }) => {
   const { image, name, Price, category, _id, location } = product;
 
   return (
-    <div className="bg-gradient-to-br from-[#3a3b5a] via-[#565871] to-[#a8a5b8] text-white p-4 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 ease-in-out">
+    <div className="bg-linear-to-br from-[#3a3b5a] via-[#565871] to-[#a8a5b8] text-white p-4 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.02] transition-transform duration-300 ease-in-out">
       {/* Image Section */}
       <img
         src={image}
