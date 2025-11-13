@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Swal from "sweetalert2";
 
 const Order = () => {
   const { id } = useParams();
@@ -54,8 +55,8 @@ const Order = () => {
       });
 
       if (!res.ok) throw new Error("Failed to place order");
-
-      toast.success("✅ Your order has been received!");
+      Swal.fire("Success!", "Listing updated successfully!", "success");
+      //   toast.success("✅ Your order has been received!");
       setTimeout(() => navigate("/my-orders"), 2000);
     } catch (err) {
       console.error(err);
