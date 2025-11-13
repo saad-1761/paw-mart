@@ -12,10 +12,11 @@ const Footer = () => {
       <div className="grid md:grid-cols-5 gap-2">
         <div>
           <h3 className="text-white font-semibold mb-2">PawMart</h3>
-          <p className="text-sm max-w-[150px]">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam
-            similique commodi sapiente dolores repellendus neque dolorem quaerat
-            fugiat veritatis ea?
+          <p className="text-sm max-w-[180px]">
+            At PawMart, we believe every pet deserves a loving home. By adopting
+            through our trusted community, you’re not just gaining a companion —
+            you’re giving a life a second chance. Here’s why people choose
+            PawMart.
           </p>
         </div>
         <div>
