@@ -58,11 +58,14 @@ const AddListing = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/add-listing", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(listingData),
-      });
+      const res = await fetch(
+        "https://paw-mart-server-roan.vercel.app/add-listing",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(listingData),
+        }
+      );
 
       if (res.ok) {
         alert("✅ Listing added successfully!");

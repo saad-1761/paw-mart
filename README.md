@@ -2,7 +2,7 @@
 
 PawMart is a platform where you can find all your favourite pets and pet supplies in one place. Adopt, shop, and care for your pets with ease — all in a secure, user-friendly environment.
 
-**Live URL:** [PawMart]()
+**Live URL:** [PawMart](pawmart61.netlify.app)
 
 ---
 
@@ -11,7 +11,6 @@ PawMart is a platform where you can find all your favourite pets and pet supplie
 - [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
 - [npm Packages](#npm-packages)
-- [Screenshots](#screenshots)
 
 ---
 

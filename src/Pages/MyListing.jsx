@@ -15,7 +15,7 @@ const MyListings = () => {
     const fetchUserListings = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/my-listings/${user.email}`
+          `https://paw-mart-server-roan.vercel.app/my-listings/${user.email}`
         );
         if (!res.ok) throw new Error("Failed to fetch listings");
         const data = await res.json();
@@ -42,9 +42,12 @@ const MyListings = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const res = await fetch(`http://localhost:3000/listing/${id}`, {
-            method: "DELETE",
-          });
+          const res = await fetch(
+            `https://paw-mart-server-roan.vercel.app/listing/${id}`,
+            {
+              method: "DELETE",
+            }
+          );
           if (!res.ok) throw new Error("Delete failed");
           setListings(listings.filter((l) => l._id !== id));
           Swal.fire("Deleted!", "Your listing has been deleted.", "success");

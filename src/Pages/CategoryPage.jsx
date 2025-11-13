@@ -12,7 +12,7 @@ const CategoryPage = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `http://localhost:3000/category/${category}`
+          `https://paw-mart-server-roan.vercel.app/category/${category}`
         );
         if (!response.ok) {
           throw new Error("Category not found");

@@ -48,11 +48,14 @@ const Order = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/orders", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(orderData),
-      });
+      const res = await fetch(
+        "https://paw-mart-server-roan.vercel.app/orders",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(orderData),
+        }
+      );
 
       if (!res.ok) throw new Error("Failed to place order");
       Swal.fire("Success!", "Listing updated successfully!", "success");

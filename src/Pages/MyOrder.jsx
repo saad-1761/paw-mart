@@ -18,7 +18,9 @@ const MyOrder = () => {
       setLoading(true);
       try {
         const res = await fetch(
-          `http://localhost:3000/my-orders/${encodeURIComponent(user.email)}`
+          `https://paw-mart-server-roan.vercel.app/my-orders/${encodeURIComponent(
+            user.email
+          )}`
         );
         if (!res.ok) throw new Error("Failed to fetch orders");
         const data = await res.json();

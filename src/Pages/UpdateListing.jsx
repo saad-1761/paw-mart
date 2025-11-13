@@ -13,7 +13,9 @@ const UpdateListing = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/listings/${id}`);
+        const res = await fetch(
+          `https://paw-mart-server-roan.vercel.app/listings/${id}`
+        );
         if (!res.ok) throw new Error("Failed to fetch data");
         const data = await res.json();
         setFormData(data);
@@ -56,11 +58,14 @@ const UpdateListing = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/listing/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      });
+      const res = await fetch(
+        `https://paw-mart-server-roan.vercel.app/listing/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData),
+        }
+      );
 
       if (res.ok) {
         Swal.fire("Success!", "Listing updated successfully!", "success");

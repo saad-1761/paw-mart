@@ -24,7 +24,8 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:3000/latest-listings"),
+        loader: () =>
+          fetch("https://paw-mart-server-roan.vercel.app/latest-listings"),
       },
       {
         path: "/login",
@@ -114,7 +115,7 @@ export const router = createBrowserRouter([
     element: <ErrorPage></ErrorPage>,
   },
   {
-    path: "/pet-supplies/:*",
+    path: "/pet-supplies/:/*",
     element: <ErrorPage></ErrorPage>,
   },
 ]);

@@ -8,7 +8,7 @@ const useListing = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios("http://localhost:3000/listings")
+    axios("https://paw-mart-server-roan.vercel.app/listings")
       .then((data) => {
         console.log(data.data);
         setListings(data.data);
