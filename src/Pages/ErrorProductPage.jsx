@@ -7,7 +7,7 @@ const ErrorProductPage = () => {
 
   // Go back to the page user came from, or home if unknown
   const handleGoBack = () => {
-    navigate("/pet&supplies");
+    navigate("/pet-supplies");
     window.location.reload();
   };
 

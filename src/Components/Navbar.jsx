@@ -70,7 +70,7 @@ const Navbar = () => {
               </li>
               <li>
                 <NavLink
-                  to="/pet&supplies"
+                  to="/pet-supplies"
                   className={({ isActive }) =>
                     isActive
                       ? "text-xl font-semibold text-primary"
@@ -165,7 +165,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink
-                to="/pet&supplies"
+                to="/pet-supplies"
                 className={({ isActive }) =>
                   isActive
                     ? "text-xl text-primary font-semibold underline"

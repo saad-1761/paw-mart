@@ -36,7 +36,7 @@ const ListingCard = ({ product }) => {
       </div>
 
       {/* Button */}
-      <Link to={`/pet&supplies/${_id}`}>
+      <Link to={`/pet-supplies/${_id}`}>
         <div className="w-full bg-white/90 text-center text-black font-semibold py-2 rounded-lg hover:bg-white transition duration-300 shadow-sm hover:shadow-md">
           View Details
         </div>

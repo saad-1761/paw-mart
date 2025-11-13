@@ -13,6 +13,7 @@ import ErrorPage from "../Pages/ErrorPage";
 import ListingDetails from "../Pages/ListingDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryPage from "../Pages/CategoryPage";
+import Order from "../Pages/order";
 
 export const router = createBrowserRouter([
   {
@@ -57,11 +58,11 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "/pet&supplies",
+        path: "/pet-supplies",
         element: <PetsSupplies></PetsSupplies>,
       },
       {
-        path: "/pet&supplies/:id",
+        path: "/pet-supplies/:id",
         element: (
           <PrivateRoute>
             <ListingDetails />
@@ -89,6 +90,14 @@ export const router = createBrowserRouter([
         path: "/category/:category",
         element: <CategoryPage></CategoryPage>,
       },
+      {
+        path: "/order/:id",
+        element: (
+          <PrivateRoute>
+            <Order></Order>
+          </PrivateRoute>
+        ),
+      },
     ],
   },
   {
@@ -96,7 +105,7 @@ export const router = createBrowserRouter([
     element: <ErrorPage></ErrorPage>,
   },
   {
-    path: "/pet&supplies/:*",
+    path: "/pet-supplies/:*",
     element: <ErrorPage></ErrorPage>,
   },
 ]);
