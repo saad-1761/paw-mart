@@ -228,7 +228,9 @@ const Navbar = () => {
                 className=" w-10 h-10 rounded-full"
                 alt=""
               />
-              <h1 className="text-4xl font-bold">{user.displayName}</h1>
+              <h1 className="hidden md:block text-4xl font-bold">
+                {user.displayName}
+              </h1>
             </div>
 
             <button
