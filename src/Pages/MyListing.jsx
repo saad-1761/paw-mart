@@ -61,34 +61,33 @@ const MyListings = () => {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-[300px] text-lg">
+      <div className="flex justify-center items-center min-h-[300px] text-lg text-gray-700 dark:text-gray-200">
         Loading your listings...
       </div>
     );
 
   if (listings.length === 0)
     return (
-      <div className="min-h-[350px] flex justify-center items-center text-lg text-gray-500">
+      <div className="min-h-[350px] flex justify-center items-center text-lg text-gray-500 dark:text-gray-300">
         You have no listings yet.
       </div>
     );
 
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">
-      <h2 className="text-2xl font-semibold text-center mb-6">
+      <h2 className="text-2xl font-semibold text-center mb-6 text-gray-800 dark:text-gray-100">
         My Listings ({listings.length})
       </h2>
 
-      {/* Row layout for large screens, card layout for small */}
       <div className="space-y-4">
         {listings.map((item, index) => (
           <div
             key={item._id}
-            className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white shadow-md hover:shadow-lg rounded-lg p-4 transition-all"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white dark:bg-gray-800 shadow-md hover:shadow-lg rounded-lg p-4 transition-all"
           >
             {/* Left: Product Info */}
             <div className="flex items-center space-x-4 w-full sm:w-3/4">
-              <span className="text-sm text-gray-500 font-medium">
+              <span className="text-sm text-gray-500 dark:text-gray-400 font-medium">
                 #{index + 1}
               </span>
               {item.image && (
@@ -99,14 +98,16 @@ const MyListings = () => {
                 />
               )}
               <div className="flex flex-col">
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
                   {item.name}
                 </h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   💰 {item.Price === 0 ? "Free" : `${item.Price}৳`} | 📅{" "}
                   {item.date}
                 </p>
-                <p className="text-xs text-gray-500">📍 {item.location}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  📍 {item.location}
+                </p>
               </div>
             </div>
 
@@ -114,13 +115,13 @@ const MyListings = () => {
             <div className="flex gap-3 mt-3 sm:mt-0 sm:w-1/4 justify-center">
               <button
                 onClick={() => handleUpdate(item._id)}
-                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 transition"
               >
                 Update
               </button>
               <button
                 onClick={() => handleDelete(item._id)}
-                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 transition"
               >
                 Delete
               </button>
