@@ -40,7 +40,8 @@ const Login = () => {
       })
       .catch((e) => {
         console.log(e);
-        toast.error(e.message);
+        Swal.fire("Error:", e.message);
+        //toast.error(e.message);
       });
   };
 
