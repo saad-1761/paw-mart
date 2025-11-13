@@ -6,12 +6,12 @@ const AddListing = () => {
   const [formData, setFormData] = useState({
     name: "",
     category: "",
-    price: "",
-    description: "",
-    photoUrl: "",
+    Price: "",
     location: "",
+    description: "",
+    image: "",
     email: "",
-    createdAt: "",
+    date: "",
   });
 
   // Auto-fill date and email on mount
@@ -20,7 +20,7 @@ const AddListing = () => {
     setFormData((prev) => ({
       ...prev,
       email: user?.email || "",
-      createdAt: today,
+      date: today,
     }));
   }, [user]);
 
@@ -33,7 +33,7 @@ const AddListing = () => {
       setFormData((prev) => ({
         ...prev,
         category: value,
-        price: value === "Pets" ? "Free" : "",
+        Price: value === "Pets" ? "Free" : "",
       }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
@@ -43,12 +43,24 @@ const AddListing = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const priceValue =
+      formData.category === "Pets" || formData.Price.toLowerCase() === "free"
+        ? 0
+        : Number(formData.Price);
+    if (isNaN(priceValue)) {
+      alert("⚠️ Please enter a valid number for Price");
+      return;
+    }
+    const listingData = {
+      ...formData,
+      Price: priceValue,
+    };
 
     try {
       const res = await fetch("http://localhost:3000/add-listing", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(listingData),
       });
 
       if (res.ok) {
@@ -57,12 +69,12 @@ const AddListing = () => {
         setFormData({
           name: "",
           category: "",
-          price: "",
-          description: "",
-          photoUrl: "",
+          Price: "",
           location: "",
+          description: "",
+          image: "",
           email: user?.email || "",
-          createdAt: today,
+          date: today,
         });
       } else {
         alert("❌ Failed to add listing");
@@ -74,7 +86,7 @@ const AddListing = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
+    <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md my-10">
       <h2 className="text-2xl font-semibold text-center mb-6">
         Add New Listing
       </h2>
@@ -115,8 +127,8 @@ const AddListing = () => {
           <label className="block font-medium mb-1">Price</label>
           <input
             type="text"
-            name="price"
-            value={formData.price}
+            name="Price"
+            value={formData.Price}
             onChange={handleChange}
             required
             disabled={formData.category === "Pets"}
@@ -147,9 +159,9 @@ const AddListing = () => {
         <div>
           <label className="block font-medium mb-1">Photo URL</label>
           <input
-            type="url"
-            name="photoUrl"
-            value={formData.photoUrl}
+            type="text"
+            name="image"
+            value={formData.image}
             onChange={handleChange}
             required
             className="w-full border px-3 py-2 rounded"
@@ -187,7 +199,7 @@ const AddListing = () => {
           <input
             type="text"
             name="createdAt"
-            value={formData.createdAt}
+            value={formData.date}
             readOnly
             className="w-full border px-3 py-2 rounded bg-gray-100 cursor-not-allowed"
           />
