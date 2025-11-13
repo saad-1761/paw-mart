@@ -59,7 +59,7 @@ const PetsSupplies = () => {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               type="search"
-              placeholder="Search Category"
+              placeholder="Search Products"
             />
             {isSearching && (
               <span className="loading loading-spinner loading-sm absolute right-3 top-1/2 -translate-y-1/2"></span>
