@@ -11,9 +11,7 @@ const PetsSupplies = () => {
 
   const term = search.trim().toLowerCase();
   const searchedCategory = term
-    ? listings.filter((listing) =>
-        listing.category.toLowerCase().includes(term)
-      )
+    ? listings.filter((listing) => listing.name.toLowerCase().includes(term))
     : listings;
 
   useEffect(() => {
