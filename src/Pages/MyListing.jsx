@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const MyListings = () => {
   const { user } = useContext(AuthContext);
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user?.email) return;
@@ -15,7 +18,6 @@ const MyListings = () => {
           `http://localhost:3000/my-listings/${user.email}`
         );
         if (!res.ok) throw new Error("Failed to fetch listings");
-
         const data = await res.json();
         setListings(data);
       } catch (err) {
@@ -28,21 +30,48 @@ const MyListings = () => {
     fetchUserListings();
   }, [user]);
 
-  if (loading) {
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to recover this listing!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await fetch(`http://localhost:3000/listing/${id}`, {
+            method: "DELETE",
+          });
+          if (!res.ok) throw new Error("Delete failed");
+          setListings(listings.filter((l) => l._id !== id));
+          Swal.fire("Deleted!", "Your listing has been deleted.", "success");
+        } catch (err) {
+          Swal.fire("Error!", "Failed to delete listing.", "error");
+        }
+      }
+    });
+  };
+
+  const handleUpdate = (id) => {
+    navigate(`/update-listing/${id}`);
+  };
+
+  if (loading)
     return (
       <div className="flex justify-center items-center min-h-[300px] text-lg">
         Loading your listings...
       </div>
     );
-  }
 
-  if (listings.length === 0) {
+  if (listings.length === 0)
     return (
       <div className="min-h-[350px] flex justify-center items-center text-lg text-gray-500">
         You have no listings yet.
       </div>
     );
-  }
 
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">
@@ -50,49 +79,50 @@ const MyListings = () => {
         My Listings ({listings.length})
       </h2>
 
-      {/* Responsive grid layout for cards */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Row layout for large screens, card layout for small */}
+      <div className="space-y-4">
         {listings.map((item, index) => (
           <div
             key={item._id}
-            className="bg-white shadow-md rounded-lg p-5 flex flex-col justify-between hover:shadow-lg transition"
+            className="flex flex-col sm:flex-row sm:items-center sm:justify-between bg-white shadow-md hover:shadow-lg rounded-lg p-4 transition-all"
           >
-            {/* Header */}
-            <div className="flex justify-between items-center mb-3">
+            {/* Left: Product Info */}
+            <div className="flex items-center space-x-4 w-full sm:w-3/4">
               <span className="text-sm text-gray-500 font-medium">
                 #{index + 1}
               </span>
-              <span className="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded">
-                {item.category}
-              </span>
-            </div>
-
-            {/* Image */}
-            {item.image && (
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-full h-40 object-cover rounded-md mb-4"
-              />
-            )}
-
-            {/* Product Info */}
-            <div className="flex-1">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
-                {item.name}
-              </h3>
-
-              <div className="flex justify-between text-sm text-gray-700 mb-2">
-                <span>💰 {item.Price === 0 ? "Free" : `${item.Price}৳`}</span>
-                <span>📅 {item.date}</span>
+              {item.image && (
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-20 h-20 object-cover rounded-md"
+                />
+              )}
+              <div className="flex flex-col">
+                <h3 className="text-lg font-semibold text-gray-800">
+                  {item.name}
+                </h3>
+                <p className="text-sm text-gray-600">
+                  💰 {item.Price === 0 ? "Free" : `${item.Price}৳`} | 📅{" "}
+                  {item.date}
+                </p>
+                <p className="text-xs text-gray-500">📍 {item.location}</p>
               </div>
-              <p className="text-xs text-gray-500">📍 {item.location}</p>
             </div>
 
-            {/* Update Button */}
-            <div className="mt-4">
-              <button className="w-full bg-indigo-600 text-white font-medium py-2 rounded hover:bg-indigo-700 transition">
+            {/* Right: Buttons */}
+            <div className="flex gap-3 mt-3 sm:mt-0 sm:w-1/4 justify-end">
+              <button
+                onClick={() => handleUpdate(item._id)}
+                className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700 transition"
+              >
                 Update
+              </button>
+              <button
+                onClick={() => handleDelete(item._id)}
+                className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+              >
+                Delete
               </button>
             </div>
           </div>

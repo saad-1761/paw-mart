@@ -72,7 +72,7 @@ const Order = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-[#121223] px-4">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-[#121223] p-4">
       <div className="w-full max-w-2xl bg-white dark:bg-[#1e1e2f] rounded-2xl shadow-lg p-6 sm:p-10">
         <h1 className="text-2xl sm:text-3xl font-extrabold text-center text-indigo-700 dark:text-yellow-300 mb-6">
           Place Your Order
@@ -148,13 +148,17 @@ const Order = () => {
               <input
                 type="number"
                 name="quantity"
-                value={formData.quantity}
+                value={
+                  product?.category?.toLowerCase() === "pets"
+                    ? "1"
+                    : formData.quantity
+                }
                 onChange={handleChange}
-                disabled={product?.category?.toLowerCase() === "pet"}
+                disabled={product?.category?.toLowerCase() === "pets"}
                 min="1"
                 required
                 className={`w-full border rounded-md px-3 py-2 ${
-                  product?.category?.toLowerCase() === "pet"
+                  product?.category?.toLowerCase() === "pets"
                     ? "bg-gray-100 dark:bg-gray-700 cursor-not-allowed"
                     : ""
                 }`}

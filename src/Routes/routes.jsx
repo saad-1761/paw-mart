@@ -14,6 +14,7 @@ import ListingDetails from "../Pages/ListingDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import CategoryPage from "../Pages/CategoryPage";
 import Order from "../Pages/order";
+import UpdateListing from "../Pages/UpdateListing";
 
 export const router = createBrowserRouter([
   {
@@ -95,6 +96,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Order></Order>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/update-listing/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateListing />
           </PrivateRoute>
         ),
       },
