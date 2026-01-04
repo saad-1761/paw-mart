@@ -1,121 +1,82 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../Layout/MainLayout";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import MyOrder from "../Pages/MyOrder";
-import MyListing from "../Pages/MyListing";
-import PetsSupplies from "../Pages/PetsSupplies";
 import Home from "../Pages/Home";
-import AddListing from "../Pages/AddListing";
-import Profile from "../Pages/Profile";
-import UpdateProfile from "../Pages/UpdateProfile";
-import ErrorPage from "../Pages/ErrorPage";
+import PetsSupplies from "../Pages/PetsSupplies";
 import ListingDetails from "../Pages/ListingDetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import About from "../Pages/About";
+import Contact from "../Pages/Contact";
 import CategoryPage from "../Pages/CategoryPage";
-import Order from "../Pages/order";
+import Order from "../Pages/Order";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import DashboardLayout from "../Layout/DashboardLayout";
+import Profile from "../Pages/Profile";
+import UpdateProfile from "../Pages/UpdateProfile";
+import MyOrder from "../Pages/MyOrder";
+import MyListing from "../Pages/MyListing";
+import AddListing from "../Pages/AddListing";
 import UpdateListing from "../Pages/UpdateListing";
+import Statistics from "../Pages/Statistics";
+import ErrorPage from "../Pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout></MainLayout>,
+    element: <MainLayout />,
     children: [
       {
         index: true,
-        element: <Home></Home>,
+        element: <Home />,
         loader: () =>
           fetch("https://paw-mart-server-roan.vercel.app/latest-listings"),
       },
+      { path: "pet-supplies", element: <PetsSupplies /> },
       {
-        path: "/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
-      {
-        path: "/my-orders",
-        element: (
-          <PrivateRoute>
-            <MyOrder></MyOrder>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/my-listings",
-        element: (
-          <PrivateRoute>
-            <MyListing></MyListing>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/add-listing",
-        element: (
-          <PrivateRoute>
-            <AddListing></AddListing>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/pet-supplies",
-        element: <PetsSupplies></PetsSupplies>,
-      },
-      {
-        path: "/pet-supplies/:id",
+        path: "pet-supplies/:id",
         element: (
           <PrivateRoute>
             <ListingDetails />
           </PrivateRoute>
         ),
       },
-
+      { path: "about", element: <About /> },
+      { path: "contact", element: <Contact /> },
+      { path: "category/:category", element: <CategoryPage /> },
       {
-        path: "/profile",
+        path: "order/:id",
         element: (
           <PrivateRoute>
-            <Profile></Profile>
+            <Order />
           </PrivateRoute>
         ),
       },
-      {
-        path: "/update-profile",
-        element: (
-          <PrivateRoute>
-            <UpdateProfile></UpdateProfile>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/category/:category",
-        element: <CategoryPage></CategoryPage>,
-      },
-      {
-        path: "/order/:id",
-        element: (
-          <PrivateRoute>
-            <Order></Order>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/update-listing/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateListing />
-          </PrivateRoute>
-        ),
-      },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
     ],
   },
+
+  // ✅ Dashboard layout (all private)
   {
-    path: "/*",
-    element: <ErrorPage></ErrorPage>,
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { index: true, element: <Profile /> },
+      { path: "profile", element: <Profile /> },
+      { path: "statistics", element: <Statistics /> },
+      { path: "update-profile", element: <UpdateProfile /> },
+      { path: "my-orders", element: <MyOrder /> },
+      { path: "my-listings", element: <MyListing /> },
+      { path: "add-listing", element: <AddListing /> },
+      { path: "update-listing/:id", element: <UpdateListing /> },
+    ],
   },
-  {
-    path: "/pet-supplies/:/*",
-    element: <ErrorPage></ErrorPage>,
-  },
+
+  // ✅ Error routes
+  { path: "/*", element: <ErrorPage /> },
+  { path: "/pet-supplies/:/*", element: <ErrorPage /> },
 ]);

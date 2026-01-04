@@ -11,14 +11,14 @@ export default function BannerCarousel() {
   const images = [Banner_1, Banner_2, Banner_3];
 
   return (
-    <div className="relative -z-10 w-full  mx-auto h-64 md:h-96  overflow-hidden">
+    <div className="relative -z-10 w-full  mx-auto h-64 md:h-112  overflow-hidden rounded-2xl">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        pagination={{ clickable: true }}
-        navigation={true}
+        //pagination={{ clickable: false }}
+        //navigation={true}
         className="h-full"
       >
         {images.map((url, i) => (

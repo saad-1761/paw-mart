@@ -21,7 +21,7 @@ const HomeCategories = () => {
   return (
     <>
       <div className="text-4xl md:text-6xl font-bold text-center my-8">
-        <h2>Our Categories</h2>
+        <h2 className="text-indigo-700 dark:text-yellow-300">Our Categories</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 p-8 max-w-7xl mx-auto">
         {categories.map((cat, i) => (
@@ -35,7 +35,7 @@ const HomeCategories = () => {
               alt={cat.name}
               className="rounded-lg w-full h-32 object-contain"
             />
-            <p className="mt-2 font-semibold">{cat.name}</p>
+            <p className="mt-2 font-semibold dark:text-black">{cat.name}</p>
           </div>
         ))}
       </div>

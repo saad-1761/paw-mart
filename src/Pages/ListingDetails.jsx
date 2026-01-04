@@ -50,7 +50,7 @@ const ListingDetails = () => {
   };
 
   const handleGoBack = () => {
-    navigate("/pet-supplies");
+    navigate(-1);
   };
 
   const isSeller = user?.email === product.email;

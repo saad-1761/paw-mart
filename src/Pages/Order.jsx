@@ -1,3 +1,4 @@
+/*eslint-disable no-unused-vars */
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
@@ -60,7 +61,7 @@ const Order = () => {
       if (!res.ok) throw new Error("Failed to place order");
       Swal.fire("Success!", "Listing updated successfully!", "success");
       //   toast.success("✅ Your order has been received!");
-      setTimeout(() => navigate("/my-orders"), 2000);
+      setTimeout(() => navigate("/pet-supplies"), 2000);
     } catch (err) {
       console.error(err);
       toast.error("❌ Failed to submit order");

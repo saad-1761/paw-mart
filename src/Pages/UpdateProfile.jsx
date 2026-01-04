@@ -31,7 +31,7 @@ const UpdateProfile = () => {
       });
 
       toast.success("Profile updated successfully!");
-      navigate("/profile");
+      navigate("/dashboard");
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -40,7 +40,7 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 p-4">
+    <div className="flex justify-center items-center rounded-2xl bg-gray-100 dark:bg-gray-900 p-4">
       <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-900 dark:text-gray-100">
           Update Profile

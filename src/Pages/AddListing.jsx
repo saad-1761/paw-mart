@@ -231,7 +231,7 @@ const AddListing = () => {
 
         <button
           type="submit"
-          className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-yellow-500 dark:to-orange-500 text-white font-semibold py-2 rounded hover:opacity-90 transition"
+          className="w-full bg-linear-to-r from-purple-600 to-indigo-600 dark:from-yellow-500 dark:to-orange-500 text-white font-semibold py-2 rounded hover:opacity-90 transition"
         >
           Post Listing
         </button>

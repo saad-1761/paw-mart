@@ -22,7 +22,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen p-4 bg-gray-100 dark:bg-gray-900">
+    <div className="flex justify-center items-center p-4 rounded-2xl bg-gray-100 dark:bg-gray-900">
       <div className="bg-white dark:bg-gray-800 shadow-lg p-8 rounded-2xl text-center w-full max-w-md">
         {/* Profile Photo */}
         <img
@@ -44,7 +44,7 @@ const Profile = () => {
         {/* Buttons */}
         <div className="mt-6 space-y-4">
           <button
-            onClick={() => navigate("/update-profile")}
+            onClick={() => navigate("/dashboard/update-profile")}
             className="w-full py-2 rounded-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 transition"
           >
             Update Profile

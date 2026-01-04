@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { jsPDF } from "jspdf";
+import { useNavigate } from "react-router";
 
 const MyOrder = () => {
   const { user } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!user?.email) {
@@ -110,7 +112,7 @@ const MyOrder = () => {
         {orders.map((o, idx) => (
           <div
             key={o._id || `${o.productId}-${idx}`}
-            className="bg-white dark:bg-[#111118] rounded-xl shadow-sm p-4 sm:p-5 flex flex-col lg:flex-row items-start lg:items-center gap-4"
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-sm p-4 sm:p-5 flex flex-col lg:flex-row items-start lg:items-center gap-4"
           >
             {/* Left: serial & product */}
             <div className="flex items-center w-full lg:w-1/5">
@@ -171,7 +173,7 @@ const MyOrder = () => {
                 onClick={() => {
                   // example: view product details (optional)
                   if (o.productId)
-                    window.open(`/pet-supplies/${o.productId}`, "_blank");
+                    navigate(`/pet-supplies/${o.productId}`, "_blank");
                 }}
                 className="w-full sm:w-auto px-3 py-2 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium transition"
               >

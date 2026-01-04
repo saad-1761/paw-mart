@@ -46,11 +46,11 @@ const CategoryPage = () => {
   return (
     <>
       {" "}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 p-4">
         {products.map((item) => (
           <div
             key={item._id}
-            className="bg-white shadow rounded-lg p-4 hover:shadow-xl transition"
+            className="bg-white shadow rounded-lg p-4 hover:shadow-xl transition dark:bg-gray-800"
           >
             <img
               src={item.image}
@@ -58,7 +58,9 @@ const CategoryPage = () => {
               className="w-full h-40 object-cover rounded"
             />
             <h3 className="mt-2 font-semibold text-lg">{item.name}</h3>
-            <p className="text-sm text-gray-600">{item.description}</p>
+            <p className="text-sm text-gray-700 dark:text-white">
+              {item.description}
+            </p>
             <p className="font-bold mt-2">
               {item.Price == "0" ? "Free" : `$ ${item.Price}`}
             </p>
@@ -67,7 +69,8 @@ const CategoryPage = () => {
       </div>
       <button
         onClick={handleGoBack}
-        className="btn bg-linear-to-r from-[#632ee2] to-[#9f62f2] text-white max-w-100 text-center mx-auto block my-10"
+        className="btn bg-indigo-600 text-white hover:bg-indigo-700
+            dark:bg-yellow-400 dark:text-gray-900 dark:hover:bg-yellow-500 max-w-100 text-center mx-auto block my-10"
       >
         Go Back
       </button>

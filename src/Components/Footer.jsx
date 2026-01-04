@@ -5,6 +5,7 @@ import {
   FaInstagram,
   FaLinkedin,
 } from "react-icons/fa";
+import { NavLink } from "react-router";
 
 const Footer = () => {
   return (
@@ -22,9 +23,17 @@ const Footer = () => {
         <div>
           <h4 className="text-white font-semibold mb-2">Company</h4>
           <ul className="space-y-1 text-sm">
-            <li>About Us</li>
-            <li>Our Mission</li>
-            <li>Contact Sales</li>
+            <li>
+              <NavLink to="/about" className="hover:underline">
+                About Us
+              </NavLink>
+            </li>
+            {/* <li>Our Mission</li> */}
+            <li>
+              <NavLink to={`/contact`} className={`hover:underline`}>
+                Contact
+              </NavLink>
+            </li>
           </ul>
         </div>
         <div>

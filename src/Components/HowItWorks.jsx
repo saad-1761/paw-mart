@@ -37,7 +37,7 @@ const HowItWorks = () => {
         {/* Heading */}
         <h2 className="text-3xl sm:text-4xl font-extrabold text-indigo-700 dark:text-yellow-300 mb-6">
           How{" "}
-          <span className="text-indigo-600 dark:text-yellow-400">PawMart</span>{" "}
+          <span className="text-indigo-600 dark:text-yellow-600">PawMart </span>
           Works
         </h2>
 
@@ -47,11 +47,11 @@ const HowItWorks = () => {
         </p>
 
         {/* Steps */}
-        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-10 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-center items-center gap-10 md:gap-8 mx-auto">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-gray-50 dark:bg-[#1e1e2f] flex flex-col items-center text-center p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 w-full md:w-1/4"
+              className="bg-gray-50 dark:bg-[#1e1e2f] flex flex-col items-center text-center p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300 w-full h-full "
             >
               <div className="mb-4">{step.icon}</div>
               <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100 mb-2">
