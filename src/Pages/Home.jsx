@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto mt-5">
         <BannerCarousel></BannerCarousel>
       </div>
 

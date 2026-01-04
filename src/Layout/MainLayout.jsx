@@ -9,17 +9,18 @@ import ScrollToTop from "../Components/ScrollToTop";
 const MainLayout = () => {
   return (
     <>
-      <DynamicTitle></DynamicTitle>
-      <ScrollToTop />
-      <div className="w-full">
-        <Navbar></Navbar>
+      <div className="">
+        {" "}
+        <DynamicTitle></DynamicTitle>
+        <ScrollToTop />
+        <div className="w-full ">
+          <Navbar></Navbar>
+        </div>
+        <div className="pt-15 min-h-[calc(100vh-68px)]">
+          <Outlet></Outlet>
+        </div>
+        <Footer></Footer>
       </div>
-
-      <div className="pt-21 min-h-[calc(100vh-68px)]">
-        <Outlet></Outlet>
-      </div>
-
-      <Footer></Footer>
     </>
   );
 };
