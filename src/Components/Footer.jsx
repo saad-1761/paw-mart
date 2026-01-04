@@ -71,7 +71,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="text-left md:text-center text-gray-500 text-sm mt-8">
-        © 2025 Paw Mart.
+        © {new Date().getFullYear()} Paw Mart.
         <br className="block md:hidden" /> All rights reserved.
       </div>
     </footer>
